@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   
+<mapper namespace="com.iu.s2.notice.NoticeDAO">
+
+	<select id="getNoticeList" resultType="com.iu.s2.notice.NoticeDTO">
+		SELECT * FROM NOTICE
+	</select>
+	
+	<insert id="setNotice" parameterType="NoticeDTO">
+		INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, #{postName}, #{postArticle}, #{postAuthor}, SYSDATE, 0)
+	</insert>
+	
+
+
+</mapper>

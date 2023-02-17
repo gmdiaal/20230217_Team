@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<c:import url="../template/common_css.jsp"></c:import>
+</head>
+<body>
+	<div class="container-fluid">
+		<form action="./add" method="post">
+			<div class="mb-3">
+			  <label for="exampleFormControlInput1" class="form-label">이름</label>
+			  <input type="text" name="postName" class="form-control" id="exampleFormControlInput1" placeholder="">
+			</div>
+			<div class="mb-3">
+			  <label for="exampleFormControlTextarea1" class="form-label">본문</label>
+			  <textarea class="form-control" name="postArticle" id="exampleFormControlTextarea1" rows="3"></textarea>
+			</div>
+			<div class="mb-3">
+			  <label for="exampleFormControlInput1" class="form-label">작성자</label>
+			  <input type="text" name="postAuthor" class="form-control" id="exampleFormControlInput1" placeholder="">
+			</div>
+			<button type="submit" class="btn btn-primary">제출</button>
+		</form>
+	</div>
+	
+	
+	<c:import url="../template/common_js.jsp"></c:import>
+</body>
+</html>

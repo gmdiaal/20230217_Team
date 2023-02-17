@@ -6,8 +6,10 @@
 </head>
 <body>
 <h1>
-	HM world!  시발
+	HOME�
 </h1>
+
+<a href="./notice/list">Notice List</a>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
