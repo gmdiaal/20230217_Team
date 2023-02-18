@@ -9,7 +9,7 @@ public class NoticeDTO {
 	private String postAuthor;
 	private Date postDate;
 	private Long postSeen;
-	
+
 	public Long getPostNum() {
 		return postNum;
 	}

@@ -5,9 +5,17 @@
    
 <mapper namespace="com.iu.s2.notice.NoticeDAO">
 
-	<select id="getNoticeList" resultType="com.iu.s2.notice.NoticeDTO">
-		SELECT * FROM NOTICE
+	<select id="getNoticeList" parameterType="Pager" resultType="NoticeDTO">
+
+		SELECT * FROM (SELECT ROWNUM R, N.* FROM (SELECT * FROM NOTICE ORDER BY POSTNUM DESC) N)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
+		
 	</select>
+	
+	<select id="getNoticeCount" resultType="Long">
+		SELECT COUNT(POSTNUM) FROM NOTICE
+	</select>
+	
 	
 	<insert id="setNotice" parameterType="NoticeDTO">
 		INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, #{postName}, #{postArticle}, #{postAuthor}, SYSDATE, 0)

@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.s2.util.Pager;
+
 @Controller
 @RequestMapping (value = "/notice/*")
 public class NoticeController {
@@ -13,8 +15,11 @@ public class NoticeController {
 	@Autowired NoticeService noticeService;
 	
 	@RequestMapping (value = "list")
-	public ModelAndView getNoticeList ( ModelAndView mv ) throws Exception {
-		mv.addObject("list", noticeService.getNoticeList());
+	public ModelAndView getNoticeList (ModelAndView mv, Pager pager) throws Exception {
+		
+		mv.addObject("list", noticeService.getNoticeList(pager));
+		mv.addObject("pager", pager);
+		mv.setViewName("/notice/list");
 		return mv;
 	}
 	@RequestMapping (value = "add")
@@ -22,11 +27,10 @@ public class NoticeController {
 		return "/notice/add";
 	}
 	@RequestMapping (value = "add", method = RequestMethod.POST)
-	public ModelAndView setNotice (NoticeDTO noticeDTO, ModelAndView mv) throws Exception {
+	public String setNotice (NoticeDTO noticeDTO) throws Exception {
 		System.out.println("conAdd");
 		int result = noticeService.setNotice(noticeDTO);
-		mv.setViewName("redirect:./list");
-		return mv;
+		return "redirect:./list";
 	}
 	
 }

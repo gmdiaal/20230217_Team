@@ -3,14 +3,19 @@
 <html>
 <head>
 	<title>Home</title>
+	<c:import url="./template/common_css.jsp"></c:import>
 </head>
-<body>
-<h1>
-	HOMEœ
-</h1>
+<body class="bg-black text-white">
+
 
 <a href="./notice/list">Notice List</a>
 
 <P>  The time on the server is ${serverTime}. </P>
+
+
+
+
+
+	<c:import url="./template/common_js.jsp"></c:import>
 </body>
 </html>
