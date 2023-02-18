@@ -47,18 +47,18 @@
 
 			<nav aria-label="Page navigation example">
 			  <ul class="mx-5 pagination">
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous">
+			    <li class="page-item ${pager.before?'disabled':''}">
+			      <a class="page-link" href="./list?page=1" aria-label="Previous">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
-			    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			    <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
 			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 			    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
 			    </c:forEach>
-			    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-			    <li class="page-item">
-			      <a class="page-link" href="#" aria-label="Next">
+			    <li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
+			    <li class="page-item ${pager.after eq false?'disabled':''}">
+			      <a class="page-link" href="./list?page=${pager.totalPage}" aria-label="Next">
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
