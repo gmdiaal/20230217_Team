@@ -16,11 +16,52 @@
 		SELECT COUNT(POSTNUM) FROM NOTICE
 	</select>
 	
-	
 	<insert id="setNotice" parameterType="NoticeDTO">
 		INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, #{postName}, #{postArticle}, #{postAuthor}, SYSDATE, 0)
 	</insert>
+	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+		DELETE FROM NOTICE WHERE POSTNUM=#{postNum}
+	</delete>
 	
+	<update id="setNoticeUpdate" parameterType="NoticeDTO">
+		UPDATE NOTICE SET POSTNAME=#{postName}, POSTARTICLE=#{postArticle} WHERE POSTNUM=#{postNum}
+	</update>
+	
+	<insert id="setNoticeImgAdd" parameterType="NoticeImgDTO">
+		INSERT INTO NOTICEIMG 
+		VALUES (NOTICE_SEQ.NEXTVAL, #{postNum}, #{fileName}, #{oriName})
+	</insert>
+
+<!-- 	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO"> -->
+<!-- 		SELECT * FROM NOTICE WHERE POSTNUM=#{postNum} -->
+<!-- 	</select> -->
+	<select id="getNoticeDetail" parameterType="NoticeDTO" resultMap="noticeDetailResult">
+<!-- 		SELECT * FROM NOTICE WHERE NOTICENUM=#{noticeNum} -->
+		SELECT * FROM NOTICE B 
+		LEFT OUTER JOIN NOTICEIMG BI 
+		ON (B.POSTNUM = BI.POSTNUM)
+		WHERE B.POSTNUM = #{postNum}
+	</select>
+	
+	<resultMap type="NoticeDTO" id="noticeDetailResult">
+		<!-- id는 pk를 -->
+<!-- 	<id column="pk" property="type의 멤버변수의 setter이름"/> -->
+		<id column="POSTNUM" property="postNum"/>
+		<result column="POSTNAME" property="postName"/>
+		<result column="POSTARTICLE" property="postArticle"/>
+		<result column="POSTAUTHOR" property="postAuthor"/>
+		<result column="POSTDATE" property="postDate"/>
+		<result column="POSTSEEN" property="postSeen"/>
+		
+		<!-- 1:1관계 -->
+		<association property="noticeImgDTO" javaType="NoticeImgDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>	
+		<!-- 1:n관계 (멤버션수가 List)-->
+<!-- 	<collection property=""></collection>			 -->
+	</resultMap>
 
 
 </mapper>

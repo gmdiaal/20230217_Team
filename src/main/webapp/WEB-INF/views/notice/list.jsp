@@ -25,14 +25,16 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-				<c:forEach items="${list}" var="dto">
+				<c:forEach items="${dto}" var="dto">
 		    <tr>
-					<td>${dto.postNum}</td>
+		    		
+					<td><a href="./detail?postNum=${dto.postNum}">${dto.postNum}</a></td>
 					<td>${dto.postName}</td>
 					<td>${dto.postArticle}</td>
 					<td>${dto.postAuthor}</td>
 					<td>${dto.postDate}</td>
 					<td>${dto.postSeen}</td>
+					
 		    </tr>
 				</c:forEach>
 		  </tbody>

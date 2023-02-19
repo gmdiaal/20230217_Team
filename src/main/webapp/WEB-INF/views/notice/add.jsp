@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<form action="./add" method="post">
+		<form action="./add" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">이름</label>
 			  <input type="text" name="postName" class="form-control" id="exampleFormControlInput1" placeholder="">
@@ -23,6 +23,12 @@
 			  <label for="exampleFormControlInput1" class="form-label">작성자</label>
 			  <input type="text" name="postAuthor" class="form-control" id="exampleFormControlInput1" placeholder="">
 			</div>
+
+			  <div class="mb-3">
+			    <label for="files" class="form-label">이미지</label>
+				<input type="file" class="form-control" id="files" name="multipartFile">
+			  </div>
+
 			<button type="submit" class="btn btn-primary">제출</button>
 		</form>
 	</div>
