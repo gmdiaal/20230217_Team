@@ -12,8 +12,8 @@
 	<div class="container-fluid">
 		<form action="./add" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
-			  <label for="exampleFormControlInput1" class="form-label">이름</label>
-			  <input type="text" name="postName" class="form-control" id="exampleFormControlInput1" placeholder="">
+			  <label for="exampleFormControlInput1" class="form-label">제목</label>
+			  <input type="text" name="postName" class="form-control" id="exampleFormControlInput1">
 			</div>
 			<div class="mb-3">
 			  <label for="exampleFormControlTextarea1" class="form-label">본문</label>
@@ -21,7 +21,8 @@
 			</div>
 			<div class="mb-3">
 			  <label for="exampleFormControlInput1" class="form-label">작성자</label>
-			  <input type="text" name="postAuthor" class="form-control" id="exampleFormControlInput1" placeholder="">
+			  <input type="text" name="postAuthor" value="${sessionScope.session1.postAuthor}" readonly class="form-control" id="exampleFormControlInput1"
+			   placeholder="${sessionScope.session.postAuthor}">
 			</div>
 
 			  <div class="mb-3">

@@ -16,18 +16,31 @@
 		SELECT COUNT(POSTNUM) FROM NOTICE
 	</select>
 	
+	<select id="setNoticeLogin" parameterType="NoticeDTO" resultType="NoticeDTO">
+		SELECT POSTAUTHOR FROM NOTICE WHERE POSTAUTHOR=#{postAuthor}
+	</select>
+	
 	<insert id="setNotice" parameterType="NoticeDTO">
-		INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL, #{postName}, #{postArticle}, #{postAuthor}, SYSDATE, 0)
+		<selectKey keyProperty="postNum" resultType="Long" order="BEFORE">
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE VALUES (#{postNum}, #{postName}, #{postArticle}, #{postAuthor}, SYSDATE, 0)
 	</insert>
 	<delete id="setNoticeDelete" parameterType="NoticeDTO">
 		DELETE FROM NOTICE WHERE POSTNUM=#{postNum}
 	</delete>
 	
 	<update id="setNoticeUpdate" parameterType="NoticeDTO">
-		UPDATE NOTICE SET POSTNAME=#{postName}, POSTARTICLE=#{postArticle} WHERE POSTNUM=#{postNum}
+		<selectKey keyProperty="postSeen" resultType="Long" order="BEFORE">
+			SELECT POSTSEEN+1 NOTICE FROM NOTICE WHERE POSTNUM=#{postNum}
+		</selectKey>
+		UPDATE NOTICE SET POSTNAME=#{postName}, POSTARTICLE=#{postArticle}, POSTSEEN=#{postSeen} WHERE POSTNUM=#{postNum}
+<!-- 		<if test="postSeen!=null">, POSTSEEN=#{postSeen}+1</if> -->
+		 
+		
 	</update>
 	
-	<insert id="setNoticeImgAdd" parameterType="NoticeImgDTO">
+	<insert id="setNoticeImgAdd" parameterType="NoticeDTO">
 		INSERT INTO NOTICEIMG 
 		VALUES (NOTICE_SEQ.NEXTVAL, #{postNum}, #{fileName}, #{oriName})
 	</insert>

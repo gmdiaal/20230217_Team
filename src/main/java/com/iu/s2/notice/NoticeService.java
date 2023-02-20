@@ -32,7 +32,7 @@ public class NoticeService {
 	public int setNotice(NoticeDTO noticeDTO, MultipartFile multipartFile) throws Exception {
 		
 		int result = noticeDAO.setNotice(noticeDTO);
-		
+		System.out.println("노티스서비스: "+noticeDTO.getPostNum());
 		
 		if(!multipartFile.isEmpty()) { //pic.getSize()!=0, 혹은 oriname있냐? //파일이 없는 경우
 			
@@ -64,5 +64,8 @@ public class NoticeService {
 	public int setNoticeUpdate(NoticeDTO noticeDTO) throws Exception {
 		return noticeDAO.setNoticeUpdate(noticeDTO);
 	}	
+	public NoticeDTO setNoticeLogin(NoticeDTO noticeDTO) throws Exception {
+		return noticeDAO.setNoticeLogin(noticeDTO);
+	}
 	
 }

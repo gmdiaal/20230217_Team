@@ -47,34 +47,38 @@
     
 
 
-			<nav aria-label="Page navigation example">
-			  <ul class="mx-5 pagination">
-			    <li class="page-item ${pager.before?'disabled':''}">
-			      <a class="page-link" href="./list?page=1" aria-label="Previous">
-			        <span aria-hidden="true">&laquo;</span>
-			      </a>
-			    </li>
-			    <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
-			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
-			    </c:forEach>
-			    <li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
-			    <li class="page-item ${pager.after eq false?'disabled':''}">
-			      <a class="page-link" href="./list?page=${pager.totalPage}" aria-label="Next">
-			        <span aria-hidden="true">&raquo;</span>
-			      </a>
-			    </li>
-			  </ul>
-			</nav>
-
-    </div>
+		<nav aria-label="Page navigation example">
+		  <ul class="mx-5 pagination">
+		    <li class="page-item ${pager.before?'disabled':''}">
+		      <a class="page-link" href="./list?page=1" aria-label="Previous">
+		        <span aria-hidden="true">&laquo;</span>
+		      </a>
+		    </li>
+		    <li class="page-item"><a class="page-link" href="./list?page=${pager.startNum-1}">Previous</a></li>
+		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+		    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+		    </c:forEach>
+		    <li class="page-item"><a class="page-link" href="./list?page=${pager.lastNum+1}">Next</a></li>
+		    <li class="page-item ${pager.after eq false?'disabled':''}">
+		      <a class="page-link" href="./list?page=${pager.totalPage}" aria-label="Next">
+		        <span aria-hidden="true">&raquo;</span>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+		
+		<!-- 검색기능 필요하면 추가 -->
+		
+    </div><!-- 컬럼-flex중앙정렬 끝 -->
 
 <!-- 페이지 끝 -->
 		
 	</div> 
 	
-	<a class="btn btn-outline-warning" href="./add">작성</a>
-	
-	<c:import url="../template/common_js_jsp"></c:import>
+	<c:import url="../template/header.jsp"></c:import>
+	<c:if test="${not empty sessionScope.session1}">
+		<a class="btn btn-outline-warning" href="./add">작성</a>
+	</c:if>
+	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -38,5 +38,8 @@ public class NoticeDAO {
 	public int setNoticeImgAdd(NoticeImgDTO noticeImgDTO)throws Exception {
 		return sqlSession.insert(NAMESPACE+"setNoticeImgAdd", noticeImgDTO);
 	}
+	public NoticeDTO setNoticeLogin(NoticeDTO noticeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"setNoticeLogin", noticeDTO);
+	}
 	
 }
